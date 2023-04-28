@@ -1,5 +1,6 @@
 # team-profile-generator
-Daniella Ferrufino
+by Daniella Ferrufino ![Github licence](http://img.shields.io/badge/license-MIT-yellowgreen.svg)
+
 
 ## Description
 This is a Node.js command-line application that takes information about a team, then generates an HTML webpage that displays summaries for each person. It prompts the user for information about their team, such as the team name, the names and roles of team members, and their contact information. It then creats an HTML file that displays the team profile, which can be customized to your preference.
