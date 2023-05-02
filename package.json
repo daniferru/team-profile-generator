@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/daniferru/team-profile-generator/issues"
   },
-  "homepage": "https://github.com/daniferru/team-profile-generator#readme"
+  "homepage": "https://github.com/daniferru/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^9.2.0"
+  }
 }
