@@ -9,15 +9,56 @@ import Designer from '../lib/projectmanager.js';
 import generateHTML from './generateHTML.mjs';
 
 const promptTeamProfile = async() => {
-    const {teamProfile} = await inquirer.prompt({
-        type: 'input',
-        message: "What is your team's name?",
-        name: 'teamProfile',
-    });
+    const teamProfile = await inquirer.prompt([
+        {
+            type: 'input',
+            message: "What is your team's name?",
+            name: 'teamProfile',
+        },
+        {
+            type: "list",
+            name: "userChoice",
+            message: "What would you like to do?",
+            choices: ["Add Software Developer", "Add QA Engineer", "Add Scrum Master", "Add Project Manager"]
+        }
+    ]);
+
+    console.log("Answers: ", teamProfile);
+
+    if(teamProfile.userChoice === "Add Software Developer") {
+        createSoftwareDeveloper();
+    } else if (teamProfile.userChoice === "Add QA Engineer") {
+        createQAEngineer();
+    }
+
     return teamProfile;
 };
 
-const employee = [];
+const propmtWhatNext = async () => {
+    const userSelect = await inquirer.prompt(
+        {
+            type: "list",
+            name: "userChoice",
+            message: "What would you like to do?",
+            choices: ["Add Software Developer", "Add QA Engineer", "Add Scrum Master", "Add Project Manager", "Add UX/UI Designer", "Create Team"]
+        }
+    );
+    
+    console.log("Answers: ", userSelect);
+    
+    if(userSelect.userChoice === "Add Software Developer") {
+        createSoftwareDeveloper();
+    } else if (userSelect.userChoice === "Add QA Engineer") {
+        createQAEngineer();
+    } else if(userSelect.userChoice === "Create Team") {
+        createTeam();
+    }
+
+
+    
+}
+
+const employees = [];
 
 async function createSoftwareDeveloper() {
     const softwareDeveloperQuestions = [
@@ -47,6 +88,7 @@ async function createSoftwareDeveloper() {
     const answers = await inquirer.prompt(softwareDeveloperQuestions);
     const softwareDeveloper = new SoftwareDeveloper(answers.name, answers.id, answers.email, answers.github);
     employees.push(softwareDeveloper);
+    propmtWhatNext();
 }
 
 async function createScrumMaster() {
@@ -71,6 +113,11 @@ async function createScrumMaster() {
             name: 'github',
             message: "What is the scrum master's GitHub username?",
         },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "What is the scrum master's office number?",
+          },
         
     ];
 
@@ -104,9 +151,10 @@ async function createQAEngineer() {
         
     ];
 
-    const answers = await inquirer.prompt(QAEngineerQuestions);
-    const QAengineer = new (answers.name, answers.id, answers.email, answers.github);
+    const answers = await inquirer.prompt(QAengineerQuestions);
+    const QAengineer = new QAEngineer(answers.name, answers.id, answers.email, answers.github);
     employees.push(QAengineer);
+    propmtWhatNext();
 }
 
 async function createProjectManger() {
@@ -126,6 +174,11 @@ async function createProjectManger() {
             name: 'email',
             message: "What is the prroject manager's email?",
         },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "What is the team project manager's office number?",
+          },
     ];
 
     const answers = await inquirer.prompt(projectManagerQuestions);
@@ -163,22 +216,25 @@ async function createDesigner() {
     employees.push(designer);
 }
 
-const markdown = generateMarkdown(employees);
-fs.writeFile('output/profile.md', markdown, (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('Succesfully created profile.md in the output folder');
-    }
-});
+function createTeam() {
 
-const html = generateHTML(employees);
-fs.writeFile('output/profile.html', html, (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('Successfully created profile.html in the output folder.');
-    }
-});
+    const markdown = generateMarkdown(employees);
+    fs.writeFile('output/profile.md', markdown, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('Succesfully created profile.md in the output folder');
+        }
+    });
+    
+    const html = generateHTML(employees);
+    fs.writeFile('output/profile.html', html, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('Successfully created profile.html in the output folder.');
+        }
+    });
+}
 
-createTeamProfile();
+promptTeamProfile();

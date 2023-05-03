@@ -31,33 +31,33 @@ function generateMarkdown(team) {
 
 function generateCards(teams) {
     let cards = "";
-    for (let i = 0; i <team.length; i++) {
+    for (let i = 0; i <teams.length; i++) {
         cards += `
         <section>
-            <h2>${team[i].name}</h2>
-            <h3>${team[i].getRole()}</h3>
+            <h2>${teams[i].name}</h2>
+            <h3>${teams[i].getRole()}</h3>
             <ul>
-            <li>ID: ${team[i].id}</li>
-            <li>Email: <a href="mailto:${team[i].email}">${team[i].email}</a></li>
+            <li>ID: ${teams[i].id}</li>
+            <li>Email: <a href="mailto:${teams[i].email}">${teams[i].email}</a></li>
             `;
-        if (team[i].getRole() === "Software Developer") {
+        if (teams[i].getRole() === "Software Developer") {
             cards += `
-            <li>GitHub: <a href="https://github.com/${team[i].github}" target="_blank">${team[i].github}</a></li>
+            <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
             `;
         }
-        else if (team[i].getRole() === "Scrum Master") {
+        else if (teams[i].getRole() === "Scrum Master") {
             cards += `
-            <li>GitHub: <a href="https://github.com/${team[i].github}" target="_blank">${team[i].github}</a></li>
+            <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
             `;
         }
-        else if (team[i].getRole() === "QA Engineer") {
+        else if (teams[i].getRole() === "QA Engineer") {
             cards += `
-            <li>GitHub: <a href="https://github.com/${team[i].github}" target="_blank">${team[i].github}</a></li>
+            <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
             `;
         }
-        else if (team[i].getRole() === "UX/UI Designer") {
+        else if (teams[i].getRole() === "UX/UI Designer") {
             cards =+ `
-            <li>GitHub: <a href="https://github.com/${team[i].github}" target="_blank">${team[i].github}</a></li>
+            <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
             `;
         }
         cards += `

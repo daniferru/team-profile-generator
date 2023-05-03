@@ -20,8 +20,8 @@ const generateCards = (employees) => {
         return `
         <div class="container">
             <div class="row justify-content-center" id="team-cards">
-                <h2>${employee.getName()}</h2>
-                <h3>${employee.getRole()}</h3>
+                <h2>${employees.getName()}</h2>
+                <h3>${employees.getRole()}</h3>
             </div>
             <div class="card-body">
                 <ul>
