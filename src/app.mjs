@@ -113,11 +113,6 @@ async function createScrumMaster() {
             name: 'github',
             message: "What is the scrum master's GitHub username?",
         },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: "What is the scrum master's office number?",
-          },
         
     ];
 
@@ -177,7 +172,7 @@ async function createProjectManger() {
         {
             type: 'input',
             name: 'officeNumber',
-            message: "What is the team project manager's office number?",
+            message: "What is the project manager's office number?",
           },
     ];
 
