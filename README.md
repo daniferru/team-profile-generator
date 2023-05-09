@@ -9,7 +9,8 @@ This is a Node.js command-line application that takes information about a team, 
 You will need to have Node.js installed on your computer, clone this repository to your local machine and navigate to the project directory in your terminal. Then, run "npm install" command to install the required dependencies.
 
 ## Usage
-Use inquirer from your command-line to answer questions about your team. View walk throuigh video here:
+Use inquirer from your command-line to answer questions about your team. View walk throuigh video here: [Walkthrough]()<br>
+<img src="/output/images/teamprofile.PNG">
 
 ## License
 This application is licensed under the MIT license.
