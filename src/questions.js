@@ -172,14 +172,25 @@ const projectManagerQuestions = [
             }
             return true;
     }
+    },
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'What is the project manager\'s office number?',
+        validate: function (input) {
+            if (!input) {
+                return 'Enter a valid office number.';
+            }
+            return true;
+    }
     }
 ];
 
-const designerQuestions = [
+const internQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: 'What is the UX/UI designer\'s name?',
+        message: 'What is the intern\'s name?',
         validate: function (input) {
             if (!input) {
                 return 'Enter a name.';
@@ -190,7 +201,7 @@ const designerQuestions = [
     {
         type: 'input',
         name: 'id',
-        message: 'What is the UX/UI designer\'s ID?',
+        message: 'What is the intern\'s ID?',
         validate: function (input) {
             if (!input) {
                 return 'Enter a valid ID.';
@@ -201,7 +212,7 @@ const designerQuestions = [
     {
         type: 'input',
         name: 'email',
-        message: 'What is the UX/UI designer\'s email?',
+        message: 'What is the intern\'s email?',
         validate: function (input) {
             if (!input) {
                 return 'Enter a valid email.';
@@ -212,12 +223,12 @@ const designerQuestions = [
     {
         type: 'input',
         name: 'github',
-        message: 'What is the UX/UI designer\'s GitHub?',
+        message: 'What is the intern\'s GitHub?',
         validate: function (input) {
             if (!input) {
                 return 'Enter a valid GitHub username.';
             }
             return true;
     }
-    }
+    },
 ];

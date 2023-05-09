@@ -5,7 +5,7 @@ import SoftwareDeveloper from '../lib/softwaredeveloper.js';
 import ScrumMaster from '../lib/scrummaster.js';
 import QAEngineer from '../lib/QAengineer.js';
 import ProjectManager from '../lib/projectmanager.js';
-import Designer from '../lib/projectmanager.js';
+import Intern from '../lib/intern.js';
 import generateHTML from './generateHTML.mjs';
 
 const promptTeamProfile = async() => {
@@ -19,16 +19,18 @@ const promptTeamProfile = async() => {
             type: "list",
             name: "userChoice",
             message: "What would you like to do?",
-            choices: ["Add Software Developer", "Add QA Engineer", "Add Scrum Master", "Add Project Manager"]
+            choices: ["Add Software Developer", "Add Scrum Master", "Add QA Engineer", "Add Project Manager", "Add Intern", "Create Team"]
         }
     ]);
-
-    console.log("Answers: ", teamProfile);
 
     if(teamProfile.userChoice === "Add Software Developer") {
         createSoftwareDeveloper();
     } else if (teamProfile.userChoice === "Add QA Engineer") {
         createQAEngineer();
+    } else if (teamProfile.userChoice === "Add Project Manager") {
+        createProjectManger();
+    } else if (teamProfile.userChoice === "Add Intern") {
+        createIntern();
     }
 
     return teamProfile;
@@ -40,22 +42,24 @@ const propmtWhatNext = async () => {
             type: "list",
             name: "userChoice",
             message: "What would you like to do?",
-            choices: ["Add Software Developer", "Add QA Engineer", "Add Scrum Master", "Add Project Manager", "Add UX/UI Designer", "Create Team"]
+            choices: ["Add Software Developer", "Add Scrum Master", "Add QA Engineer", "Add Project Manager", "Add Intern", "Create Team"]
         }
     );
     
-    console.log("Answers: ", userSelect);
-    
     if(userSelect.userChoice === "Add Software Developer") {
         createSoftwareDeveloper();
+    } else if (userSelect.userChoice === "Add Scrum Master") {
+        createScrumMaster();
     } else if (userSelect.userChoice === "Add QA Engineer") {
         createQAEngineer();
+    } else if (userSelect.userChoice === "Add Project Manager") {
+        createProjectManger();
+    } else if (userSelect.userChoice === "Add Intern") {
+        createIntern();
     } else if(userSelect.userChoice === "Create Team") {
         createTeam();
     }
 
-
-    
 }
 
 const employees = [];
@@ -119,6 +123,7 @@ async function createScrumMaster() {
     const answers = await inquirer.prompt(scrumMasterQuestions);
     const scrumMaster = new ScrumMaster(answers.name, answers.id, answers.email, answers.github);
     employees.push(scrumMaster);
+    propmtWhatNext();
 }
 
 async function createQAEngineer() {
@@ -177,44 +182,50 @@ async function createProjectManger() {
     ];
 
     const answers = await inquirer.prompt(projectManagerQuestions);
-    const projectManager = new ProjectManager(answers.name, answers.id, answers.email, answers.github);
+    const projectManager = new ProjectManager(answers.name, answers.id, answers.email, answers.officeNumber);
     employees.push(projectManager);
+    propmtWhatNext();
 }
 
-async function createDesigner() {
-    const designerQuestions = [
+async function createIntern() {
+    const internQuestions = [
         {
         type: 'input',
         name: 'name',
-        message: "What is the UX/UI designer's name?",
+        message: "What is the intern's name?",
         },
         {
             type: 'input',
             name: 'id',
-            message: "What is the UX/UI designer's ID?",
+            message: "What is the intern's ID?",
         },
         {
             type: 'input',
             name: 'email',
-            message: "What is the UX/UI designer's email?",
+            message: "What is the intern's email?",
         },
         {
             type: 'input',
             name: 'github',
-            message: "What is the UX/UI designer's GitHub username?",
+            message: "What is the intern's GitHub username?",
         },
-        
+        {
+            type: 'input',
+            name: 'school',
+            message: "What is the intern's school?",
+        },
     ];
 
-    const answers = await inquirer.prompt(designerQuestions);
-    const designer = new Designer(answers.name, answers.id, answers.email, answers.github);
-    employees.push(designer);
+    const answers = await inquirer.prompt(internQuestions);
+    const intern = new Intern(answers.name, answers.id, answers.email, answers.github, answers.school);
+    employees.push(intern);
+    propmtWhatNext();
 }
 
 function createTeam() {
 
     const markdown = generateMarkdown(employees);
-    fs.writeFile('output/profile.md', markdown, (err) => {
+    fs.writeFile('../output/profile.md', markdown, (err) => {
         if (err) {
             console.error(err);
         } else {
@@ -223,7 +234,7 @@ function createTeam() {
     });
     
     const html = generateHTML(employees);
-    fs.writeFile('output/profile.html', html, (err) => {
+    fs.writeFile('../output/profile.html', html, (err) => {
         if (err) {
             console.error(err);
         } else {

@@ -1,4 +1,4 @@
-function generateMarkdown(team) {
+function generateMarkdown(teams) {
     const html = `
     <!DOCTYPE html>
   <html lang="en">
@@ -7,11 +7,10 @@ function generateMarkdown(team) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Creepster&family=Poltawski+Nowy&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="../output/style.css">
     <title>Team Profile</title>
   </head>
   
@@ -20,7 +19,7 @@ function generateMarkdown(team) {
       <h1>My Team</h1>
     </header>
     <main>
-      ${generateCards(team)}
+      ${generateCards(teams)}
     </main>
   </body>
   
@@ -37,8 +36,8 @@ function generateCards(teams) {
             <h2>${teams[i].name}</h2>
             <h3>${teams[i].getRole()}</h3>
             <ul>
-            <li>ID: ${teams[i].id}</li>
-            <li>Email: <a href="mailto:${teams[i].email}">${teams[i].email}</a></li>
+              <li>ID: ${teams[i].id}</li>
+              <li>Email: <a href="mailto:${teams[i].email}">${teams[i].email}</a></li>
             `;
         if (teams[i].getRole() === "Software Developer") {
             cards += `
@@ -55,9 +54,14 @@ function generateCards(teams) {
             <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
             `;
         }
-        else if (teams[i].getRole() === "UX/UI Designer") {
+        else if (teams[i].getRole() === "Project Manager") {
+            cards += `
+            <li>Office Number: ${teams[i].officeNumber}
+            `;
+        }
+        else if (teams[i].getRole() === "Intern") {
             cards =+ `
-            <li>GitHub: <a href="https://github.com/${teams[i].github}" target="_blank">${teams[i].github}</a></li>
+            <li>School: ${teams[i].school}
             `;
         }
         cards += `

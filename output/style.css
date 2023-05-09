@@ -1,3 +1,72 @@
+* {
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+:root {
+    --primary: lightslategray;
+    --secondary: white;
+}
+
 body {
-    font-family: 'Poltawski Nowy', serif
+    font-family: 'Playfair', serif
+}
+
+h2 {
+    font-size: large;
+    text-align: center;
+    text-shadow: 2px 2px #111;
+}
+
+.navbar {
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px #111;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.container {
+    width: 300px;
+    height: 150px;
+    margin: 100px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary);
+}
+
+.card-header {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+.card-body {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.card-body ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
